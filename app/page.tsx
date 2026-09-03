@@ -76,9 +76,12 @@ export default function LandingPage() {
       <section id="try-your-ebi" className="relative bg-black py-24 overflow-hidden">
         <Starfield />
         <div className="relative container mx-auto px-6">
-          <h2 className="text-center text-white text-2xl sm:text-3xl font-bold mb-16">
+          <h2 className="text-center text-white text-2xl sm:text-3xl font-bold mb-3">
             Try your EBI
           </h2>
+          <p className="text-center text-white/40 text-xs mb-16">
+            A third domain from the paper (Taiwan Health Supplements) is confidential and not included in this demo.
+          </p>
           <div className="flex flex-wrap justify-center gap-x-20 gap-y-12 max-w-4xl mx-auto">
             {TRY_CARDS.map((card, i) => (
               <Link
