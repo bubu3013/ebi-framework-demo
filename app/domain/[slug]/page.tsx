@@ -120,7 +120,7 @@ export default function DomainPage({ params }: Props) {
 
           {/* Interactive ablation — kickstarter-technology */}
           {slug === 'kickstarter-technology' && results && (results as any).guess_it && (() => {
-            const ksMonths = ['Apr 2025', 'May 2025', 'Jun 2025', 'Jul 2025', 'Aug 2025', 'Sep 2025', 'Oct 2025', 'Nov 2025', 'Dec 2025', 'Jan 2026', 'Feb 2026', 'Mar 2026']
+            const ksMonths = ['Aug 2025', 'Sep 2025', 'Oct 2025', 'Nov 2025', 'Dec 2025', 'Jan 2026', 'Feb 2026', 'Mar 2026']
             const builder = (results as any).builder ?? {}
             const guessIt = (results as any).guess_it ?? []
             const gtMonthly = (results as any).breakdown?.gt_monthly ?? {}

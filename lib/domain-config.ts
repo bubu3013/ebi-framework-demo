@@ -74,28 +74,10 @@ export interface BreakdownData {
   predictions: Record<string, number[]>
 }
 
-export interface FeatureAblationEntry {
-  feature_key: string
-  feature_name: string
-  tag: "E" | "B"
-  rho: number | null
-  jsd: number | null
-  mae: number | null
-  delta_rho: number | null
-  delta_jsd: number | null
-  delta_mae: number | null
-}
-
-export interface FeatureAblationData {
-  baseline: { rho: number | null; jsd: number | null; mae: number | null }
-  features: FeatureAblationEntry[]
-}
-
 export interface ResultData {
   domain: string
   rows: ResultRow[]
   breakdown?: BreakdownData
-  feature_ablation?: FeatureAblationData
 }
 
 export interface AblationCondition {

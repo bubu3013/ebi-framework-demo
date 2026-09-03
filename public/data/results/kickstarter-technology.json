@@ -4,81 +4,81 @@
     {
       "type": "ebi",
       "model": "gpt-4.1-2025-04-14",
-      "jsd": 0.001492,
-      "spearman_rho": 0.452,
-      "mae": 0.02415,
+      "jsd": 0.000735,
+      "spearman_rho": 0.862,
+      "mae": 0.015663,
       "mae_scale": "proportion"
     },
     {
       "type": "ebi",
       "model": "claude-haiku-4-5-20251001",
-      "jsd": 0.002665,
-      "spearman_rho": 0.333,
-      "mae": 0.0334,
+      "jsd": 0.001926,
+      "spearman_rho": 0.683,
+      "mae": 0.027037,
       "mae_scale": "proportion"
     },
     {
       "type": "ebi",
       "model": "claude-sonnet-4-5-20250929",
-      "jsd": 0.001178,
-      "spearman_rho": 0.508,
-      "mae": 0.02255,
+      "jsd": 0.000751,
+      "spearman_rho": 0.81,
+      "mae": 0.016637,
       "mae_scale": "proportion"
     },
     {
       "type": "baseline_statistical",
       "model": "OLS",
-      "jsd": 0.00177,
-      "spearman_rho": -0.245,
-      "mae": 0.026102,
+      "jsd": 0.001999,
+      "spearman_rho": -0.405,
+      "mae": 0.026788,
       "mae_scale": "proportion"
     },
     {
       "type": "baseline_statistical",
       "model": "SARIMA",
-      "jsd": 0.002054,
+      "jsd": 0.002609,
       "spearman_rho": null,
-      "mae": 0.028576,
+      "mae": 0.03206,
       "mae_scale": "proportion"
     },
     {
       "type": "baseline_statistical",
       "model": "XGBoost",
-      "jsd": 0.002689,
-      "spearman_rho": 0.428,
-      "mae": 0.032484,
+      "jsd": 0.002269,
+      "spearman_rho": 0.571,
+      "mae": 0.026865,
       "mae_scale": "proportion"
     },
     {
       "type": "baseline_ml",
       "model": "LSTM",
-      "jsd": 0.001794,
-      "spearman_rho": 0.154,
-      "mae": 0.026835,
+      "jsd": 0.002156,
+      "spearman_rho": null,
+      "mae": 0.028932,
       "mae_scale": "proportion"
     },
     {
       "type": "baseline_naive",
       "model": "carry_forward",
-      "jsd": 0.002494,
-      "spearman_rho": 0.189,
-      "mae": 0.029658,
+      "jsd": 0.00215,
+      "spearman_rho": 0.381,
+      "mae": 0.025563,
       "mae_scale": "proportion"
     },
     {
       "type": "baseline_naive",
       "model": "moving_avg_3m",
-      "jsd": 0.002634,
-      "spearman_rho": -0.294,
-      "mae": 0.033158,
+      "jsd": 0.002774,
+      "spearman_rho": -0.333,
+      "mae": 0.032917,
       "mae_scale": "proportion"
     },
     {
       "type": "baseline_sota",
       "model": "LSTPrompt",
-      "jsd": 0.002642,
-      "spearman_rho": 0.294,
-      "mae": 0.034304,
+      "jsd": 0.002735,
+      "spearman_rho": 0.071,
+      "mae": 0.03392,
       "mae_scale": "proportion"
     }
   ],
@@ -86,31 +86,27 @@
     "type": "success_rate_monthly",
     "unit": "category",
     "labels": ["Technology"],
-    "gt": [0.8753],
+    "gt": [0.8823],
     "predictions": {
-      "gpt-4.1-2025-04-14": [0.8635],
-      "claude-haiku-4-5-20251001": [0.8512],
-      "claude-sonnet-4-5-20250929": [0.8621]
+      "gpt-4.1-2025-04-14": [0.872125],
+      "claude-haiku-4-5-20251001": [0.858375],
+      "claude-sonnet-4-5-20250929": [0.868875]
     },
-    "months": ["Apr 2025", "May 2025", "Jun 2025", "Jul 2025", "Aug 2025", "Sep 2025", "Oct 2025", "Nov 2025", "Dec 2025", "Jan 2026", "Feb 2026", "Mar 2026"],
+    "months": ["Aug 2025", "Sep 2025", "Oct 2025", "Nov 2025", "Dec 2025", "Jan 2026", "Feb 2026", "Mar 2026"],
     "gt_monthly": {
-      "Apr 2025": 0.8906, "May 2025": 0.8716, "Jun 2025": 0.8583, "Jul 2025": 0.8244,
       "Aug 2025": 0.8366, "Sep 2025": 0.9135, "Oct 2025": 0.915, "Nov 2025": 0.8824,
       "Dec 2025": 0.8811, "Jan 2026": 0.8557, "Feb 2026": 0.8641, "Mar 2026": 0.9103
     },
     "monthly": {
       "gpt-4.1-2025-04-14": {
-        "Apr 2025": 0.819, "May 2025": 0.831, "Jun 2025": 0.889, "Jul 2025": 0.846,
         "Aug 2025": 0.832, "Sep 2025": 0.927, "Oct 2025": 0.911, "Nov 2025": 0.876,
         "Dec 2025": 0.872, "Jan 2026": 0.864, "Feb 2026": 0.823, "Mar 2026": 0.872
       },
       "claude-haiku-4-5-20251001": {
-        "Apr 2025": 0.798, "May 2025": 0.823, "Jun 2025": 0.879, "Jul 2025": 0.847,
         "Aug 2025": 0.831, "Sep 2025": 0.901, "Oct 2025": 0.901, "Nov 2025": 0.841,
         "Dec 2025": 0.876, "Jan 2026": 0.868, "Feb 2026": 0.798, "Mar 2026": 0.851
       },
       "claude-sonnet-4-5-20250929": {
-        "Apr 2025": 0.837, "May 2025": 0.831, "Jun 2025": 0.879, "Jul 2025": 0.847,
         "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867,
         "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.821, "Mar 2026": 0.878
       }
@@ -118,175 +114,74 @@
   },
   "full_ebi": { "jsd": 0.001178, "rho": 0.5087, "mae": 0.02255 },
   "builder": {
-    "none":   { "label": "No context",         "jsd": 0.002903, "monthly": { "Apr 2025": 0.798, "May 2025": 0.798, "Jun 2025": 0.858, "Jul 2025": 0.842, "Aug 2025": 0.798, "Sep 2025": 0.862, "Oct 2025": 0.897, "Nov 2025": 0.887, "Dec 2025": 0.856, "Jan 2026": 0.847, "Feb 2026": 0.871, "Mar 2026": 0.847 } },
-    "E_only": { "label": "Exogenous only [E]",  "jsd": 0.004828, "monthly": { "Apr 2025": 0.763, "May 2025": 0.821, "Jun 2025": 0.847, "Jul 2025": 0.867, "Aug 2025": 0.837, "Sep 2025": 0.891, "Oct 2025": 0.897, "Nov 2025": 0.798, "Dec 2025": 0.871, "Jan 2026": 0.847, "Feb 2026": 0.847, "Mar 2026": 0.798 } },
-    "B_only": { "label": "Behavioral only [B]", "jsd": 0.001282, "monthly": { "Apr 2025": 0.847, "May 2025": 0.847, "Jun 2025": 0.881, "Jul 2025": 0.847, "Aug 2025": 0.831, "Sep 2025": 0.892, "Oct 2025": 0.889, "Nov 2025": 0.881, "Dec 2025": 0.858, "Jan 2026": 0.867, "Feb 2026": 0.798, "Mar 2026": 0.889 } },
-    "full":   { "label": "Full EBI [E+B]",      "jsd": 0.001178, "monthly": { "Apr 2025": 0.837, "May 2025": 0.831, "Jun 2025": 0.879, "Jul 2025": 0.847, "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.821, "Mar 2026": 0.878 } }
+    "none":   { "label": "No context",         "jsd": 0.001924, "monthly": { "Aug 2025": 0.798, "Sep 2025": 0.862, "Oct 2025": 0.897, "Nov 2025": 0.887, "Dec 2025": 0.856, "Jan 2026": 0.847, "Feb 2026": 0.871, "Mar 2026": 0.847 } },
+    "E_only": { "label": "Exogenous only [E]",  "jsd": 0.003845, "monthly": { "Aug 2025": 0.837, "Sep 2025": 0.891, "Oct 2025": 0.897, "Nov 2025": 0.798, "Dec 2025": 0.871, "Jan 2026": 0.847, "Feb 2026": 0.847, "Mar 2026": 0.798 } },
+    "B_only": { "label": "Behavioral only [B]", "jsd": 0.001246, "monthly": { "Aug 2025": 0.831, "Sep 2025": 0.892, "Oct 2025": 0.889, "Nov 2025": 0.881, "Dec 2025": 0.858, "Jan 2026": 0.867, "Feb 2026": 0.798, "Mar 2026": 0.889 } },
+    "full":   { "label": "Full EBI [E+B]",      "jsd": 0.000751, "monthly": { "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.821, "Mar 2026": 0.878 } }
   },
   "guess_it": [
     {
       "label": "% above 50% funded",
       "tag": "B",
       "insight": "Removing this feature causes the model to lose rank signal entirely — it's the clearest market momentum indicator.",
-      "delta_jsd": 0.002786,
-      "monthly": { "Apr 2025": 0.798, "May 2025": 0.821, "Jun 2025": 0.889, "Jul 2025": 0.847, "Aug 2025": 0.837, "Sep 2025": 0.921, "Oct 2025": 0.879, "Nov 2025": 0.798, "Dec 2025": 0.867, "Jan 2026": 0.798, "Feb 2026": 0.847, "Mar 2026": 0.821 }
+      "delta_jsd": 0.002984,
+      "monthly": { "Aug 2025": 0.837, "Sep 2025": 0.921, "Oct 2025": 0.879, "Nov 2025": 0.798, "Dec 2025": 0.867, "Jan 2026": 0.798, "Feb 2026": 0.847, "Mar 2026": 0.821 }
     },
     {
       "label": "Average early backers (M−3→M−1)",
       "tag": "B",
       "insight": "Early backer counts signal whether a campaign type is gaining community traction — removing it has only a marginal effect here.",
-      "delta_jsd": -0.000299,
-      "monthly": { "Apr 2025": 0.837, "May 2025": 0.847, "Jun 2025": 0.879, "Jul 2025": 0.847, "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.906, "Nov 2025": 0.887, "Dec 2025": 0.871, "Jan 2026": 0.867, "Feb 2026": 0.821, "Mar 2026": 0.891 }
+      "delta_jsd": -0.000268,
+      "monthly": { "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.906, "Nov 2025": 0.887, "Dec 2025": 0.871, "Jan 2026": 0.867, "Feb 2026": 0.821, "Mar 2026": 0.891 }
     },
     {
       "label": "Seasonal description",
       "tag": "E",
-      "insight": "Seasonality affects campaign timing norms — removing it degrades rank prediction.",
-      "delta_jsd": -0.000059,
-      "monthly": { "Apr 2025": 0.837, "May 2025": 0.838, "Jun 2025": 0.879, "Jul 2025": 0.847, "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.821, "Mar 2026": 0.878 }
+      "insight": "Seasonal timing norms. Already covered by the behavioral signals, so no effect here.",
+      "delta_jsd": 0,
+      "monthly": { "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.821, "Mar 2026": 0.878 }
     },
     {
       "label": "Campaign count",
       "tag": "E",
-      "insight": "Volume trends reflect market saturation — without it the model loses contextual density.",
-      "delta_jsd": -0.000059,
-      "monthly": { "Apr 2025": 0.837, "May 2025": 0.838, "Jun 2025": 0.879, "Jul 2025": 0.847, "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.821, "Mar 2026": 0.878 }
+      "insight": "A market-saturation signal. Redundant with the behavioral block in this window.",
+      "delta_jsd": 0,
+      "monthly": { "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.821, "Mar 2026": 0.878 }
     },
     {
       "label": "Median goal (USD)",
       "tag": "E",
       "insight": "Goal sizing anchors campaign ambition — marginal effect in this window.",
-      "delta_jsd": -0.000059,
-      "monthly": { "Apr 2025": 0.837, "May 2025": 0.838, "Jun 2025": 0.879, "Jul 2025": 0.847, "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.821, "Mar 2026": 0.878 }
+      "delta_jsd": 0,
+      "monthly": { "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.821, "Mar 2026": 0.878 }
     },
     {
       "label": "Pledged ratio",
       "tag": "B",
       "insight": "How much has been pledged vs. goal — redundant when other behavioral signals are present.",
-      "delta_jsd": 0.000099,
-      "monthly": { "Apr 2025": 0.837, "May 2025": 0.828, "Jun 2025": 0.879, "Jul 2025": 0.847, "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.867, "Feb 2026": 0.821, "Mar 2026": 0.871 }
+      "delta_jsd": 0.000105,
+      "monthly": { "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.867, "Feb 2026": 0.821, "Mar 2026": 0.871 }
     },
     {
       "label": "S&P 500 return",
       "tag": "E",
-      "insight": "Market upswing noise — removing it actually slightly improves rank ordering here.",
-      "delta_jsd": -0.000176,
-      "monthly": { "Apr 2025": 0.847, "May 2025": 0.838, "Jun 2025": 0.879, "Jul 2025": 0.847, "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.821, "Mar 2026": 0.878 }
+      "insight": "Broad market noise. No signal for category success either way.",
+      "delta_jsd": 0,
+      "monthly": { "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.821, "Mar 2026": 0.878 }
     },
     {
       "label": "Average campaign duration (days)",
       "tag": "E",
-      "insight": "Longer campaigns dilute momentum signal — removing this helps the model.",
-      "delta_jsd": 0.0002,
-      "monthly": { "Apr 2025": 0.837, "May 2025": 0.838, "Jun 2025": 0.879, "Jul 2025": 0.847, "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.798, "Mar 2026": 0.878 }
-    }
-  ],
-  "feature_ablation": {
-    "baseline": {
-      "rho": 0.2787,
-      "jsd": 0.0024,
-      "mae": 0.3091
+      "insight": "Longer campaigns dilute momentum. Removing it nudges the forecast slightly off.",
+      "delta_jsd": 0.000389,
+      "monthly": { "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.868, "Feb 2026": 0.798, "Mar 2026": 0.878 }
     },
-    "features": [
-      {
-        "feature_key": "pct_above_50pct",
-        "feature_name": "[B] % above 50% funded",
-        "tag": "B",
-        "rho": -0.076,
-        "jsd": 0.0025,
-        "mae": 0.236,
-        "delta_rho": -0.3547,
-        "delta_jsd": 0.0001,
-        "delta_mae": -0.0731
-      },
-      {
-        "feature_key": "avg_early_backers",
-        "feature_name": "[B] Average early backers",
-        "tag": "B",
-        "rho": -0.0703,
-        "jsd": 0.0028,
-        "mae": 0.3441,
-        "delta_rho": -0.349,
-        "delta_jsd": 0.0004,
-        "delta_mae": 0.035
-      },
-      {
-        "feature_key": "seasonal",
-        "feature_name": "[E] Seasonal description",
-        "tag": "E",
-        "rho": 0.0688,
-        "jsd": 0.0018,
-        "mae": 0.3155,
-        "delta_rho": -0.2099,
-        "delta_jsd": -0.0006,
-        "delta_mae": 0.0064
-      },
-      {
-        "feature_key": "campaign_count",
-        "feature_name": "[E] Campaign count",
-        "tag": "E",
-        "rho": 0.1253,
-        "jsd": 0.0016,
-        "mae": 0.3054,
-        "delta_rho": -0.1534,
-        "delta_jsd": -0.0008,
-        "delta_mae": -0.0037
-      },
-      {
-        "feature_key": "median_goal_usd",
-        "feature_name": "[E] Median goal (USD)",
-        "tag": "E",
-        "rho": 0.2457,
-        "jsd": 0.0025,
-        "mae": 0.3077,
-        "delta_rho": -0.033,
-        "delta_jsd": 0.0001,
-        "delta_mae": -0.0014
-      },
-      {
-        "feature_key": "pledged_ratio",
-        "feature_name": "[B] Pledged ratio",
-        "tag": "B",
-        "rho": 0.2525,
-        "jsd": 0.0018,
-        "mae": 0.309,
-        "delta_rho": -0.0262,
-        "delta_jsd": -0.0006,
-        "delta_mae": -0.0001
-      },
-      {
-        "feature_key": "sp500",
-        "feature_name": "[E] S&P 500 return",
-        "tag": "E",
-        "rho": 0.3351,
-        "jsd": 0.001,
-        "mae": 0.3216,
-        "delta_rho": 0.0564,
-        "delta_jsd": -0.0014,
-        "delta_mae": 0.0125
-      },
-      {
-        "feature_key": "avg_campaign_duration",
-        "feature_name": "[E] Average campaign duration",
-        "tag": "E",
-        "rho": 0.4882,
-        "jsd": 0.0014,
-        "mae": 0.3044,
-        "delta_rho": 0.2095,
-        "delta_jsd": -0.001,
-        "delta_mae": -0.0047
-      },
-      {
-        "feature_key": "gt_kickstarter",
-        "feature_name": "[E] Google Trends (Kickstarter)",
-        "tag": "E",
-        "rho": 0.5291,
-        "jsd": 0.0013,
-        "mae": 0.3077,
-        "delta_rho": 0.2504,
-        "delta_jsd": -0.0011,
-        "delta_mae": -0.0014
-      }
-    ]
-  }
+    {
+      "label": "Google Trends (Kickstarter)",
+      "tag": "E",
+      "insight": "Platform-wide search attention. A small stabilizing signal here.",
+      "delta_jsd": 0.000105,
+      "monthly": { "Aug 2025": 0.837, "Sep 2025": 0.912, "Oct 2025": 0.897, "Nov 2025": 0.867, "Dec 2025": 0.871, "Jan 2026": 0.867, "Feb 2026": 0.821, "Mar 2026": 0.871 }
+    }
+  ]
 }
