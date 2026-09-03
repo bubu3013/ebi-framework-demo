@@ -126,7 +126,6 @@ export default function DomainPage({ params }: Props) {
                 <div style={{ minWidth: 0 }}>
                   <AblationGuessIt
                     parties={(results as any).parties}
-                    fullEbi={(results as any).full_ebi}
                     features={guessIt}
                     chartType="line"
                     fullEbiMonthly={builder?.full?.monthly}

@@ -71,7 +71,7 @@ interface FeatureEntry {
 
 interface GuessItProps {
   parties: string[]
-  fullEbi: { jsd: number; rho: number; mae: number; pred: number[] }
+  fullEbi?: { jsd: number; rho: number; mae: number; pred: number[] }
   features: FeatureEntry[]
   chartType?: "donut" | "line"
   fullEbiMonthly?: Record<string, string | number>
@@ -183,9 +183,8 @@ function GuessItSvgChart({ lines, hoveredIdx, onHover, months, valueMode, yDomai
 const BAND_COLOR: Record<string, string> = { High: "#27500A", Mid: "#854F0B", Low: "#A32D2D" }
 const BAND_BG: Record<string, string> = { High: "#EAF3DE", Mid: "#FEFCE8", Low: "#FFF0EE" }
 
-function LineGuessIt({ features, fullEbi, fullEbiMonthly, gtMonthly, months, valueMode, yDomain }: {
+function LineGuessIt({ features, fullEbiMonthly, gtMonthly, months, valueMode, yDomain }: {
   features: FeatureEntry[]
-  fullEbi: { jsd: number }
   fullEbiMonthly: Record<string, string | number>
   gtMonthly: Record<string, string | number>
   months: string[]
@@ -202,9 +201,9 @@ function LineGuessIt({ features, fullEbi, fullEbiMonthly, gtMonthly, months, val
   const ranked = useMemo(() => [...features]
     .map((f, i) => ({
       i,
-      delta: f.delta_jsd ?? ((f.jsd != null && fullEbi.jsd != null) ? f.jsd - fullEbi.jsd : 0),
+      delta: f.delta_jsd ?? 0,
     }))
-    .sort((a, b) => b.delta - a.delta), [features, fullEbi.jsd])
+    .sort((a, b) => b.delta - a.delta), [features])
 
   function rankOf(idx: number) { return ranked.findIndex(r => r.i === idx) + 1 }
   function pick(idx: number) {
@@ -222,7 +221,7 @@ function LineGuessIt({ features, fullEbi, fullEbiMonthly, gtMonthly, months, val
 
   const f = selected !== null ? features[selected] : null
   const woMonthly: Record<string, string | number> = f?.monthly ?? {}
-  const delta = f ? (f.delta_jsd ?? ((f.jsd != null && fullEbi.jsd != null) ? f.jsd - fullEbi.jsd : 0)) : 0
+  const delta = f ? (f.delta_jsd ?? 0) : 0
   const rank = selected !== null ? rankOf(selected) : 0
   const worse = delta > 0
 
@@ -398,7 +397,7 @@ function LineGuessIt({ features, fullEbi, fullEbiMonthly, gtMonthly, months, val
 export function AblationGuessIt({ parties, fullEbi, features, chartType, fullEbiMonthly, gtMonthly, months, valueMode, yDomain }: GuessItProps) {
   if (chartType === "line" && fullEbiMonthly && gtMonthly) {
     return <LineGuessIt
-      features={features} fullEbi={fullEbi} fullEbiMonthly={fullEbiMonthly} gtMonthly={gtMonthly}
+      features={features} fullEbiMonthly={fullEbiMonthly} gtMonthly={gtMonthly}
       months={months ?? HS_MONTHS} valueMode={valueMode ?? "band"} yDomain={yDomain ?? [0, 1]}
     />
   }
@@ -409,7 +408,7 @@ export function AblationGuessIt({ parties, fullEbi, features, chartType, fullEbi
   const [confettiTrigger, setConfettiTrigger] = useState(0)
 
   const ranked = [...features]
-    .map((f, i) => ({ i, delta: f.delta_jsd ?? ((f.jsd != null) ? f.jsd - fullEbi.jsd : 0) }))
+    .map((f, i) => ({ i, delta: f.delta_jsd ?? ((f.jsd != null && fullEbi) ? f.jsd - fullEbi.jsd : 0) }))
     .sort((a, b) => b.delta - a.delta)
 
   function rankOf(idx: number) {
@@ -433,7 +432,7 @@ export function AblationGuessIt({ parties, fullEbi, features, chartType, fullEbi
   }
 
   const f = selected !== null ? features[selected] : null
-  const fullPieSegs = parties.map((p, i) => ({ value: fullEbi.pred[i], color: BAR_COLORS[i], label: p }))
+  const fullPieSegs = parties.map((p, i) => ({ value: fullEbi?.pred[i] ?? 0, color: BAR_COLORS[i], label: p }))
   const woPieSegs = f ? parties.map((p, i) => ({ value: f.pred[i], color: BAR_COLORS[i], label: p })) : []
 
   return (
@@ -508,7 +507,7 @@ export function AblationGuessIt({ parties, fullEbi, features, chartType, fullEbi
             <PieChart segments={fullPieSegs} size={160} title="Full EBI" />
           </div>
         ) : (() => {
-          const delta = f.delta_jsd ?? ((f.jsd != null) ? f.jsd - fullEbi.jsd : 0)
+          const delta = f.delta_jsd ?? ((f.jsd != null && fullEbi) ? f.jsd - fullEbi.jsd : 0)
           const worse = delta > 0
           const rank = rankOf(selected!)
           const rankLabel = rank === 1 ? "Most critical" : rank === features.length ? "Least critical" : `#${rank} of ${features.length}`
