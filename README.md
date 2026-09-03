@@ -11,15 +11,16 @@ Interactive demonstration of the **Exogenous–Behavioral–Inference (EBI)** fr
 population-level collective behavior prediction using LLMs, without relying on abundant
 history-side data.
 
-Two public domains:
+Two domains are included here:
 
 | Domain | Country | Task |
 |--------|---------|------|
 | Japan 2026 Election | Japan | 7-party vote share prediction |
 | Kickstarter Technology | United States | Monthly campaign success rate |
 
-> A third domain used in the paper is covered by a non-disclosure agreement and is not
-> included in this public demo.
+> The paper evaluates a third domain, Taiwan Health Supplements, which is based on
+> proprietary retail sales data that cannot be publicly redistributed. It is therefore
+> not included in this interactive demo. See the paper for its aggregate results.
 
 ## Features
 
