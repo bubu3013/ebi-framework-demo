@@ -1,0 +1,512 @@
+{
+  "domain": "election-jp",
+  "rows": [
+    {
+      "type": "ebi",
+      "model": "gpt-4.1-2025-04-14",
+      "jsd": 0.006065,
+      "spearman_rho": 1.0,
+      "mae": 0.016446,
+      "mae_scale": "proportion"
+    },
+    {
+      "type": "ebi",
+      "model": "claude-haiku-4-5-20251001",
+      "jsd": 0.01108,
+      "spearman_rho": 1.0,
+      "mae": 0.026536,
+      "mae_scale": "proportion"
+    },
+    {
+      "type": "ebi",
+      "model": "claude-sonnet-4-5-20250929",
+      "jsd": 0.021427,
+      "spearman_rho": 0.9643,
+      "mae": 0.033679,
+      "mae_scale": "proportion"
+    },
+    {
+      "type": "baseline_statistical",
+      "model": "ols",
+      "jsd": 0.09041,
+      "spearman_rho": 0.955,
+      "mae": 0.057547,
+      "mae_scale": "proportion"
+    },
+    {
+      "type": "baseline_statistical",
+      "model": "sarima",
+      "jsd": 0.093095,
+      "spearman_rho": 0.955,
+      "mae": 0.061271,
+      "mae_scale": "proportion"
+    },
+    {
+      "type": "baseline_statistical",
+      "model": "xgboost",
+      "jsd": 0.10088,
+      "spearman_rho": 0.919,
+      "mae": 0.068774,
+      "mae_scale": "proportion"
+    },
+    {
+      "type": "baseline_ml",
+      "model": "lstm",
+      "jsd": 0.109668,
+      "spearman_rho": 0.8929,
+      "mae": 0.078698,
+      "mae_scale": "proportion"
+    },
+    {
+      "type": "baseline_sota",
+      "model": "rss_claude-haiku-4-5-20251001",
+      "jsd": 0.05244,
+      "spearman_rho": 0.8571,
+      "mae": 0.063386,
+      "mae_scale": "proportion"
+    },
+    {
+      "type": "baseline_sota",
+      "model": "rss_claude-sonnet-4-5-20250929",
+      "jsd": 0.04989,
+      "spearman_rho": 0.8571,
+      "mae": 0.061957,
+      "mae_scale": "proportion"
+    },
+    {
+      "type": "baseline_sota",
+      "model": "rss_gpt-4.1-2025-04-14",
+      "jsd": 0.047438,
+      "spearman_rho": 0.6786,
+      "mae": 0.0569,
+      "mae_scale": "proportion"
+    },
+    {
+      "type": "baseline_reference",
+      "model": "survey",
+      "jsd": 0.006111,
+      "spearman_rho": 1.0,
+      "mae": 0.019671,
+      "mae_scale": "proportion"
+    },
+    {
+      "type": "baseline_naive",
+      "model": "carry_forward",
+      "jsd": 0.074535,
+      "spearman_rho": 0.8829,
+      "mae": 0.068835,
+      "mae_scale": "proportion"
+    },
+    {
+      "type": "baseline_naive",
+      "model": "moving_avg_3m",
+      "jsd": 0.077382,
+      "spearman_rho": 0.8469,
+      "mae": 0.067782,
+      "mae_scale": "proportion"
+    }
+  ],
+  "breakdown": {
+    "type": "distribution",
+    "unit": "party",
+    "labels": [
+      "自由民主党",
+      "中道改革連合",
+      "国民民主党",
+      "日本維新の会",
+      "参政党",
+      "チームみらい",
+      "その他"
+    ],
+    "gt": [
+      0.3672,
+      0.1823,
+      0.0973,
+      0.0863,
+      0.0744,
+      0.0666,
+      0.1258
+    ],
+    "predictions": {
+      "gpt-4.1-2025-04-14": [
+        0.362,
+        0.187,
+        0.124,
+        0.078,
+        0.061,
+        0.036,
+        0.152
+      ],
+      "claude-haiku-4-5-20251001": [
+        0.325,
+        0.182,
+        0.138,
+        0.081,
+        0.062,
+        0.034,
+        0.178
+      ],
+      "claude-sonnet-4-5-20250929": [
+        0.367,
+        0.128,
+        0.102,
+        0.071,
+        0.059,
+        0.034,
+        0.239
+      ]
+    }
+  },
+  "feature_ablation": {
+    "baseline": {
+      "rho": 0.8929,
+      "jsd": 1.5895,
+      "mae": 0.0302
+    },
+    "features": [
+      {
+        "feature_key": "q11",
+        "feature_name": "[E] Consumption tax stance",
+        "tag": "E",
+        "rho": 0.7857,
+        "jsd": 1.2488,
+        "mae": 0.0226,
+        "delta_rho": -0.1072,
+        "delta_jsd": -0.3407,
+        "delta_mae": -0.0076
+      },
+      {
+        "feature_key": "q5",
+        "feature_name": "[B] Ruling vs. opposition lean",
+        "tag": "B",
+        "rho": 0.7857,
+        "jsd": 1.2488,
+        "mae": 0.0226,
+        "delta_rho": -0.1072,
+        "delta_jsd": -0.3407,
+        "delta_mae": -0.0076
+      },
+      {
+        "feature_key": "q1",
+        "feature_name": "[E] Cabinet approval",
+        "tag": "E",
+        "rho": 0.8929,
+        "jsd": 1.194,
+        "mae": 0.0226,
+        "delta_rho": 0.0,
+        "delta_jsd": -0.3955,
+        "delta_mae": -0.0076
+      },
+      {
+        "feature_key": "q7",
+        "feature_name": "[E] Desired election outcome",
+        "tag": "E",
+        "rho": 0.8929,
+        "jsd": 0.9159,
+        "mae": 0.0197,
+        "delta_rho": 0.0,
+        "delta_jsd": -0.6736,
+        "delta_mae": -0.0105
+      },
+      {
+        "feature_key": "q9",
+        "feature_name": "[E] CRA expectation",
+        "tag": "E",
+        "rho": 0.8929,
+        "jsd": 0.9565,
+        "mae": 0.0197,
+        "delta_rho": 0.0,
+        "delta_jsd": -0.633,
+        "delta_mae": -0.0105
+      },
+      {
+        "feature_key": "q10",
+        "feature_name": "[E] Top policy issues",
+        "tag": "E",
+        "rho": 0.8929,
+        "jsd": 0.8137,
+        "mae": 0.0197,
+        "delta_rho": 0.0,
+        "delta_jsd": -0.7758,
+        "delta_mae": -0.0105
+      },
+      {
+        "feature_key": "q2",
+        "feature_name": "[B] Party support distribution",
+        "tag": "B",
+        "rho": 0.8929,
+        "jsd": 1.2413,
+        "mae": 0.0226,
+        "delta_rho": 0.0,
+        "delta_jsd": -0.3482,
+        "delta_mae": -0.0076
+      },
+      {
+        "feature_key": "q8",
+        "feature_name": "[E] Dissolution approval",
+        "tag": "E",
+        "rho": 0.9643,
+        "jsd": 1.0757,
+        "mae": 0.0247,
+        "delta_rho": 0.0714,
+        "delta_jsd": -0.5138,
+        "delta_mae": -0.0055
+      },
+      {
+        "feature_key": "q4",
+        "feature_name": "[B] Election interest",
+        "tag": "B",
+        "rho": 1.0,
+        "jsd": 0.5657,
+        "mae": 0.017,
+        "delta_rho": 0.1071,
+        "delta_jsd": -1.0238,
+        "delta_mae": -0.0132
+      }
+    ]
+  },
+  "parties": [
+    "自由民主党",
+    "中道改革連合",
+    "国民民主党",
+    "日本維新の会",
+    "参政党",
+    "チームみらい",
+    "その他"
+  ],
+  "full_ebi": {
+    "jsd": 0.006065,
+    "rho": 1.0,
+    "mae": 0.016446,
+    "pred": [
+      36.2,
+      18.7,
+      12.4,
+      7.8,
+      6.1,
+      3.6,
+      15.2
+    ]
+  },
+  "guess_it": [
+    {
+      "label": "Cabinet approval rating",
+      "tag": "E",
+      "insight": "Removing cabinet approval causes the single largest accuracy drop — the model relies heavily on this macro-political signal to anchor vote share.",
+      "jsd": 0.013998,
+      "rho": 1.0,
+      "mae": 0.032643,
+      "pred": [
+        29.8,
+        19.7,
+        12.6,
+        8.7,
+        6.2,
+        3.4,
+        19.6
+      ]
+    },
+    {
+      "label": "Pre-election party support distribution",
+      "tag": "B",
+      "insight": "Removing party support distribution actually improves accuracy — self-reported party preference diverges from actual vote share and introduces noise into the model.",
+      "jsd": 0.004317,
+      "rho": 1.0,
+      "mae": 0.017955,
+      "pred": [
+        32.8,
+        22.1,
+        10.7,
+        8.9,
+        7.6,
+        4.3,
+        13.6
+      ]
+    },
+    {
+      "label": "Voter interest in the election",
+      "tag": "B",
+      "insight": "Election interest signals mobilization — when turnout enthusiasm is high, challenger parties outperform their polls.",
+      "jsd": 0.006104,
+      "rho": 1.0,
+      "mae": 0.015303,
+      "pred": [
+        36.2,
+        18.7,
+        12.1,
+        8.3,
+        6.2,
+        3.4,
+        15.1
+      ]
+    },
+    {
+      "label": "Ruling vs. opposition coalition preference",
+      "tag": "B",
+      "insight": "Coalition preference shifts vote share between ruling and opposition blocs — moderately important.",
+      "jsd": 0.008077,
+      "rho": 1.0,
+      "mae": 0.021017,
+      "pred": [
+        34.2,
+        18.7,
+        12.1,
+        8.3,
+        6.2,
+        3.4,
+        17.1
+      ]
+    },
+    {
+      "label": "Preferred election outcome",
+      "tag": "E",
+      "insight": "Desired election outcome captures strategic voting intentions beyond simple party preference — a secondary signal for vote-share direction.",
+      "jsd": 0.00732,
+      "rho": 1.0,
+      "mae": 0.016448,
+      "pred": [
+        36.2,
+        17.8,
+        12.4,
+        8.7,
+        6.1,
+        3.2,
+        15.6
+      ]
+    },
+    {
+      "label": "Approval of parliament dissolution",
+      "tag": "E",
+      "insight": "Dissolution approval reflects trust in the PM timing — affects ruling party support.",
+      "jsd": 0.006065,
+      "rho": 1.0,
+      "mae": 0.016446,
+      "pred": [
+        36.2,
+        18.7,
+        12.4,
+        7.8,
+        6.1,
+        3.6,
+        15.2
+      ]
+    },
+    {
+      "label": "Expected seats for 中道改革連合 (Centrist Reform Alliance)",
+      "tag": "E",
+      "insight": "Coalition partner expectations affect vote distribution between ruling bloc parties — a moderate factor in the ruling coalition's projected share.",
+      "jsd": 0.011784,
+      "rho": 1.0,
+      "mae": 0.02816,
+      "pred": [
+        32.8,
+        18.7,
+        13.2,
+        7.8,
+        5.6,
+        3.4,
+        18.5
+      ]
+    },
+    {
+      "label": "Top policy priority (e.g. economy, security)",
+      "tag": "E",
+      "insight": "Policy salience shifts which parties voters rally to — second largest individual impact after cabinet approval.",
+      "jsd": 0.006534,
+      "rho": 1.0,
+      "mae": 0.01616,
+      "pred": [
+        36.2,
+        19.8,
+        10.7,
+        8.1,
+        6.3,
+        3.2,
+        15.7
+      ]
+    },
+    {
+      "label": "Consumption tax stance",
+      "tag": "E",
+      "insight": "Tax stance affects fringe-party support — limited impact on major party shares.",
+      "jsd": 0.008327,
+      "rho": 1.0,
+      "mae": 0.019017,
+      "pred": [
+        36.2,
+        18.7,
+        12.4,
+        7.8,
+        5.6,
+        3.2,
+        16.1
+      ]
+    }
+  ],
+  "builder": {
+    "none": {
+      "label": "No context",
+      "tag": "system",
+      "jsd": 0.018044,
+      "rho": 1.0,
+      "mae": 0.042072,
+      "pred": [
+        27.8,
+        22.1,
+        12.4,
+        10.2,
+        4.7,
+        3.6,
+        19.2
+      ]
+    },
+    "E_only": {
+      "label": "Exogenous only",
+      "tag": "system",
+      "jsd": 0.002283,
+      "rho": 1.0,
+      "mae": 0.008473,
+      "pred": [
+        36.2,
+        19.8,
+        10.7,
+        8.9,
+        7.6,
+        4.3,
+        12.5
+      ]
+    },
+    "B_only": {
+      "label": "Behavioral only",
+      "tag": "system",
+      "jsd": 0.020987,
+      "rho": 0.9643,
+      "mae": 0.037588,
+      "pred": [
+        29.8,
+        18.7,
+        13.2,
+        8.6,
+        5.1,
+        2.8,
+        21.8
+      ]
+    },
+    "full": {
+      "label": "Full EBI",
+      "tag": "system",
+      "jsd": 0.006065,
+      "rho": 1.0,
+      "mae": 0.016446,
+      "pred": [
+        36.2,
+        18.7,
+        12.4,
+        7.8,
+        6.1,
+        3.6,
+        15.2
+      ]
+    }
+  }
+}

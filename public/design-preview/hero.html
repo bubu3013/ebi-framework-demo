@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EBI Framework — Hero Orb + Matrix Flythrough</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body{ height:100%; background:#000; }
+.scene {
+  background:#000;
+  height:100vh;
+  position:relative; overflow:hidden;
+}
+canvas#bg { position:absolute; inset:0; width:100%; height:100%; }
+.hud{position:absolute;top:10px;left:12px;color:#4fd1ff;font:11px 'Courier New';opacity:.6;z-index:30}
+
+/* ── center orb + eyes, ported from emnlp_demo_2026_homepage_hero_orb_vortex.html ── */
+.glow-bg {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:340px; height:340px; border-radius:50%; z-index:5;
+  background:radial-gradient(circle,rgba(0,80,200,0.28) 0%,rgba(0,30,120,0.12) 50%,transparent 70%);
+  filter:blur(32px);
+  animation:pulse-bg 4s ease-in-out infinite alternate; pointer-events:none;
+}
+@keyframes pulse-bg{0%{transform:translate(-50%,-50%) scale(1);opacity:.7}100%{transform:translate(-50%,-50%) scale(1.18);opacity:1}}
+.orb-container{
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:220px; height:220px; z-index:10;
+}
+.ring{
+  position:absolute; inset:-22px; border-radius:50%;
+  border:1px solid rgba(0,200,255,0.28);
+  animation:ring-spin 12s linear infinite;
+}
+.ring::before{
+  content:''; position:absolute; top:-2px; left:50%;
+  width:5px; height:5px; background:#00cfff; border-radius:50%;
+  box-shadow:0 0 10px 4px #00cfff; transform:translateX(-50%);
+}
+.ring2{
+  position:absolute; inset:-38px; border-radius:50%;
+  border:1px solid rgba(0,100,255,0.16);
+  animation:ring-spin 22s linear infinite reverse;
+}
+.ring2::before{
+  content:''; position:absolute; bottom:-2px; left:28%;
+  width:3px; height:3px; background:#0088ff; border-radius:50%;
+  box-shadow:0 0 8px 3px #0088ff;
+}
+@keyframes ring-spin{to{transform:rotate(360deg)}}
+.orb{
+  width:220px; height:220px; border-radius:50%;
+  position:relative; overflow:hidden;
+  animation:breathe 5s ease-in-out infinite;
+  box-shadow:
+    0 0 50px 12px rgba(0,120,255,0.55),
+    0 0 110px 35px rgba(0,50,200,0.32),
+    inset 0 0 40px rgba(0,0,0,0.5);
+}
+.orb::before{
+  content:''; position:absolute; inset:-60%; width:220%; height:220%;
+  background:conic-gradient(from 0deg,#001a80,#0055ff,#00aaff,#0033cc,#0077ff,#00ccff,#0044dd,#001a80);
+  animation:spin 9s linear infinite;
+}
+.orb-spec{
+  position:absolute; inset:0; border-radius:50%; z-index:2;
+  background:radial-gradient(circle at 30% 26%,rgba(255,255,255,0.55) 0%,rgba(120,200,255,0.18) 24%,transparent 58%);
+}
+.orb-depth{
+  position:absolute; inset:0; border-radius:50%; z-index:1;
+  background:radial-gradient(circle at 58% 62%,rgba(0,0,40,0.5) 0%,transparent 60%);
+}
+.orb-scan{
+  position:absolute; inset:0; border-radius:50%; z-index:3;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.08) 3px,rgba(0,0,0,0.08) 4px);
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.eyes{
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-55%);
+  display:flex; gap:17px; z-index:20; pointer-events:none;
+}
+.eye-wrap{
+  width:42px; height:42px; border-radius:50%;
+  background:radial-gradient(circle at 50% 55%,#04041a 60%,#080828 100%);
+  box-shadow:0 0 0 3px rgba(255,255,255,0.88),0 0 14px rgba(0,150,255,0.55);
+  position:relative; overflow:hidden;
+  animation:blink 7s ease-in-out infinite;
+}
+.pupil-group{
+  position:absolute; top:50%; left:50%;
+  width:18px; height:18px;
+  transform:translate(-50%,-50%);
+  transition:transform 0.07s ease-out;
+}
+.pupil{ width:18px; height:18px; background:#000; border-radius:50%; position:relative; }
+.pupil::before{
+  content:''; position:absolute; top:2px; left:3px;
+  width:7px; height:7px; background:white; border-radius:50%; opacity:.95;
+}
+.pupil::after{
+  content:''; position:absolute; bottom:3px; right:3px;
+  width:4px; height:4px; background:rgba(255,255,255,0.6); border-radius:50%;
+}
+@keyframes blink{0%,82%,100%{transform:scaleY(1)}90%{transform:scaleY(0.06)}}
+.orb-ring-particle{
+  position:absolute; top:50%; left:50%;
+  width:2px; height:2px; border-radius:50%; opacity:0; margin:-1px;
+  animation:orb-ring-orbit var(--dur) linear infinite; animation-delay:var(--delay);
+}
+@keyframes orb-ring-orbit{
+  0%{opacity:0;transform:rotate(var(--a)) translateX(var(--r)) scale(1.5)}
+  15%{opacity:1} 85%{opacity:.4}
+  100%{opacity:0;transform:rotate(calc(var(--a)+360deg)) translateX(var(--r)) scale(.3)}
+}
+</style>
+</head>
+<body>
+<div class="scene" id="scene">
+  <div class="hud">matrix flythrough zoom + center orb — radial growth from center, 0.95x pace</div>
+  <canvas id="bg"></canvas>
+  <div class="glow-bg"></div>
+  <div class="orb-container" id="orbWrap">
+    <div class="ring"></div><div class="ring2"></div>
+    <div class="orb">
+      <div class="orb-depth"></div><div class="orb-spec"></div><div class="orb-scan"></div>
+    </div>
+    <div class="eyes" id="eyes">
+      <div class="eye-wrap" id="eyeL"><div class="pupil-group" id="pupilL"><div class="pupil"></div></div></div>
+      <div class="eye-wrap" id="eyeR"><div class="pupil-group" id="pupilR"><div class="pupil"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+const DPR = Math.min(window.devicePixelRatio || 1, 1); // capped at 1 — the tiny-buffer blur trick got unstable at high DPR
+
+function resize(){
+  const r = canvas.getBoundingClientRect();
+  logicalW = r.width  || canvas.offsetWidth  || 800;
+  logicalH = r.height || canvas.offsetHeight || 520;
+  canvas.width  = Math.round(logicalW * DPR);
+  canvas.height = Math.round(logicalH * DPR);
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+}
+window.addEventListener('resize', () => { resize(); rebuildBuckets(); });
+
+const CHARSET = '0123456789ABCDEFGHS<>?%+-=:.'.split('');
+function randChar(){ return CHARSET[Math.floor(Math.random()*CHARSET.length)]; }
+function gaussianish(spread){ return ((Math.random()+Math.random()+Math.random()) - 1.5) / 1.5 * spread; }
+
+// The reference clip is NOT falling rain — re-checked frame-by-frame (0.25s steps):
+// characters grow rapidly in place (radiating outward from a center vanishing point)
+// like a camera flying forward through the data field, then reset small and repeat.
+// So depth = distance-from-center (radius), not vertical position:
+//   small radius = far/just spawned = small + blurred + dim
+//   large radius = close/about to exit = big + sharp + bright
+// Growth is exponential (radius *= growth each frame) so it visibly accelerates —
+// matches the "flythrough" feel and gives the 5x-faster punch requested.
+const ORB_EXCLUDE_RADIUS = 0; // no orb yet in this standalone file — reserved for later
+
+// Perf note: measured — ctx.filter='blur()' costs ~34fps→11fps on this scene regardless
+// of downscale. The "render tiny, let drawImage's upscale do the blurring" trick (no
+// filter() at all) measured 33-41fps — it originally looked broken (ghosting/streaking),
+// but that turned out to be the clearRect-under-transform bug above, not this technique.
+// With that fixed, back to the no-filter version for real.
+const BLUR_BUCKETS = [
+  { scale:0.14 },
+  { scale:0.22 },
+  { scale:0.38 },
+  { scale:0.65 },
+  { scale:1    },
+];
+const BLUR_BUCKET_TMAX = [0.22, 0.42, 0.62, 0.82, 1.01];
+function bucketIndexForT(t){
+  for (let i=0;i<BLUR_BUCKET_TMAX.length;i++) if (t <= BLUR_BUCKET_TMAX[i]) return i;
+  return BLUR_BUCKETS.length-1;
+}
+
+let bucketCanvases = [], bucketCtxs = [];
+function rebuildBuckets(){
+  bucketCanvases = BLUR_BUCKETS.map(()=> document.createElement('canvas'));
+  bucketCtxs = bucketCanvases.map(c => c.getContext('2d'));
+  BLUR_BUCKETS.forEach((b, i) => {
+    bucketCanvases[i].width  = Math.max(1, Math.round(canvas.width  * b.scale));
+    bucketCanvases[i].height = Math.max(1, Math.round(canvas.height * b.scale));
+    bucketCtxs[i].setTransform(DPR * b.scale, 0, 0, DPR * b.scale, 0, 0);
+  });
+}
+
+class ZoomChar {
+  constructor(){ this.reset(true); }
+  reset(init){
+    this.angle = Math.random() * Math.PI * 2;
+    const maxR = Math.hypot(logicalW, logicalH) * 0.58; // fills full viewport edge-to-edge
+    this.radius = init ? Math.random()*maxR : 4 + Math.random()*10;
+    this.growth = 1 + (0.028 + Math.random()*0.02) * 0.95;      // per-frame exponential growth (0.95x of the 5x-pace version)
+    this.maxRadius = maxR;
+    this.char = randChar();
+    this.changeTimer = 8 + Math.random()*18;
+    this.bigBlob = Math.random() < 0.1;
+    this.baseSize = (this.bigBlob ? 26 : 10) + Math.random()*(this.bigBlob ? 20 : 8);
+    this.baseAlpha = this.bigBlob ? 0.55 : (0.7 + Math.random()*0.3);
+    this.glitch = Math.random() < 0.16;
+  }
+  update(){
+    this.radius *= this.growth;
+    this.changeTimer--;
+    if (this.changeTimer <= 0){ this.char = randChar(); this.changeTimer = 8 + Math.random()*18; }
+    if (this.radius > this.maxRadius) this.reset(false);
+  }
+  draw(cx, cy){
+    const t = Math.min(1, this.radius / this.maxRadius); // 0 = just spawned/far, 1 = about to exit/close
+    const size = this.baseSize * (0.4 + 1.8*t);
+    const alpha = this.baseAlpha * Math.min(1, t*4) * (1 - Math.max(0, t-0.85)*6); // fade in, fade out near exit
+    if (alpha <= 0.01) return;
+    const x = cx + Math.cos(this.angle) * this.radius;
+    const y = cy + Math.sin(this.angle) * this.radius * 0.82; // slight vertical squash for perspective
+    const brightness = t > 0.55 ? '215,246,255' : (t > 0.25 ? '110,185,245' : '70,120,190');
+    const bc = bucketCtxs[bucketIndexForT(t)];
+    bc.font = `bold ${Math.max(4,Math.round(size))}px 'Courier New'`;
+    bc.fillStyle = `rgba(${brightness},${alpha})`;
+    bc.fillText(this.char, x, y);
+    if (this.glitch){
+      bc.fillStyle = `rgba(${brightness},${alpha*0.35})`;
+      bc.fillText(this.char, x+2, y+2);
+    }
+  }
+}
+
+// occasional horizontal digit-string rows drifting slowly, echoing the reference clip's
+// mid-frame rows like "52345087 2340589125-98 3457 234587"
+class RowString {
+  constructor(){ this.reset(true); }
+  reset(init){
+    this.y = init ? Math.random()*logicalH : Math.random()*logicalH*0.9;
+    this.x = -300;
+    this.speed = (0.25 + Math.random()*0.5) * 5 * 0.95; // 5x pace, then 0.95x per latest tweak
+    this.size = 12 + Math.random()*6;
+    this.alpha = 0.28 + Math.random()*0.22;
+    this.text = Array.from({length: 14 + Math.floor(Math.random()*16)}, () =>
+      Math.random() < 0.15 ? ' ' : randChar()).join('');
+    this.life = 0;
+    this.maxLife = 900 + Math.random()*600;
+  }
+  update(){
+    this.x += this.speed;
+    this.life++;
+    if (this.x > logicalW + 300 || this.life > this.maxLife) this.reset(false);
+  }
+  draw(){
+    // no per-glyph filter here — cheap enough at this count, and keeps rows crisp
+    ctx.font = `${this.size}px 'Courier New'`;
+    ctx.fillStyle = `rgba(140,200,240,${this.alpha})`;
+    ctx.fillText(this.text, this.x, this.y);
+  }
+}
+
+let zoomChars = [];
+let rows = [];
+
+function buildParticles(){
+  zoomChars = Array.from({length: 650}, () => new ZoomChar()); // 2.5x the 260 density pass
+  rows = Array.from({length:9}, () => new RowString());
+}
+
+let frameCount = 0;
+function frame(){
+  // fully opaque clear — no translucent trail — so glyphs read as discrete characters
+  // instead of comet-tail streaks
+  ctx.filter = 'none';
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0,0,logicalW,logicalH);
+
+  // clear bucket buffers (transparent) before this frame's glyphs are drawn into them.
+  // MUST clear in raw pixel space (identity transform) — clearing under the bucket's
+  // logical DPR*scale transform only wiped a fraction of the canvas, leaving stale
+  // glyphs to accumulate frame after frame (this was the ghosting/streaking bug).
+  bucketCtxs.forEach((bc, i) => {
+    bc.save();
+    bc.setTransform(1,0,0,1,0,0);
+    bc.clearRect(0,0,bucketCanvases[i].width,bucketCanvases[i].height);
+    bc.restore();
+  });
+
+  const cx = logicalW/2, cy = logicalH/2;
+
+  rows.forEach(r=>{ r.update(); r.draw(); });
+  zoomChars.forEach(z=>{ z.update(); z.draw(cx, cy); });
+
+  // composite far → near: tiny buffers stretched up to full size — the upscale
+  // interpolation is the "blur", zero filter() calls
+  ctx.save();
+  ctx.setTransform(1,0,0,1,0,0); // draw at raw device pixels, no double DPR scaling
+  BLUR_BUCKETS.forEach((b, i) => {
+    ctx.drawImage(bucketCanvases[i], 0, 0, bucketCanvases[i].width, bucketCanvases[i].height,
+                                     0, 0, canvas.width, canvas.height);
+  });
+  ctx.restore();
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+
+  frameCount++;
+  requestAnimationFrame(frame);
+}
+
+let logicalW = 0, logicalH = 0;
+
+function startAnimation(){
+  const r = canvas.getBoundingClientRect();
+  logicalW = r.width || canvas.offsetWidth || 800;
+  logicalH = r.height || canvas.offsetHeight || 520;
+  if (!logicalW || !logicalH) {
+    requestAnimationFrame(startAnimation);
+    return;
+  }
+  resize();
+  rebuildBuckets();
+  buildParticles();
+  frame();
+}
+startAnimation();
+
+// ── center orb: ring-orbit dots + mouse-tracking eyes (ported, orb's own vortex canvas dropped — the matrix rain behind it replaces it) ──
+const orbWrap = document.getElementById('orbWrap');
+['#00d4ff','#0088ff','#44aaff','#0066cc'].forEach((c,ci) => {
+  for(let i=ci; i<24; i+=4){
+    const p = document.createElement('div');
+    p.className='orb-ring-particle';
+    p.style.setProperty('--a',(i/24*360)+'deg');
+    p.style.setProperty('--r',(130+Math.random()*25)+'px');
+    p.style.setProperty('--dur',(5+Math.random()*5)+'s');
+    p.style.setProperty('--delay',(Math.random()*6)+'s');
+    p.style.background=c; p.style.boxShadow=`0 0 5px ${c}`;
+    orbWrap.appendChild(p);
+  }
+});
+
+const scene=document.getElementById('scene');
+const pupilL=document.getElementById('pupilL');
+const pupilR=document.getElementById('pupilR');
+const eyeL=document.getElementById('eyeL');
+const eyeR=document.getElementById('eyeR');
+const EYE_MAX=7;
+function trackEye(el,pl,mx,my){
+  const r=el.getBoundingClientRect();
+  const dx=mx-(r.left+r.width/2), dy=my-(r.top+r.height/2);
+  const dist=Math.sqrt(dx*dx+dy*dy);
+  const t=Math.min(dist/80,1)*EYE_MAX;
+  const a=Math.atan2(dy,dx);
+  pl.style.transform=`translate(calc(-50% + ${Math.cos(a)*t}px), calc(-50% + ${Math.sin(a)*t}px))`;
+}
+scene.addEventListener('mousemove',e=>{ trackEye(eyeL,pupilL,e.clientX,e.clientY); trackEye(eyeR,pupilR,e.clientX,e.clientY); });
+scene.addEventListener('mouseleave',()=>{ pupilL.style.transform='translate(-50%,-50%)'; pupilR.style.transform='translate(-50%,-50%)'; });
+</script>
+</body>
+</html>

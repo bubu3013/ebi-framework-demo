@@ -1,0 +1,3 @@
+# YYYY-MM,# integer,# USD,# days,# prior-month S&P500 return,# text description,# avg backers in first 48h,# proportion 0-1,# avg pledged/goal ratio,# GT score 0-100
+prediction_month,campaign_count,median_goal_usd,avg_campaign_duration,sp500,seasonal,avg_early_backers,pct_above_50pct,pledged_ratio,gt_kickstarter
+2025-01,1842,10000,32.5,0.023,Q1 post-holiday slowdown,47.3,0.41,0.38,62
