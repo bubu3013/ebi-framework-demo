@@ -79,12 +79,12 @@ export default function LandingPage() {
           <h2 className="text-center text-white text-2xl sm:text-3xl font-bold mb-16">
             Try your EBI
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-x-20 gap-y-12 max-w-4xl mx-auto">
             {TRY_CARDS.map((card, i) => (
               <Link
                 key={card.slug}
                 href={`/domain/${card.slug}`}
-                className="group flex flex-col items-center gap-5"
+                className="group flex flex-col items-center gap-5 w-48"
               >
                 <div className="relative">
                   <MiniOrb phase={i * 1.3} />
