@@ -80,7 +80,7 @@ export default function LandingPage() {
             Try your EBI
           </h2>
           <p className="text-center text-white/40 text-xs mb-16">
-            A third domain from the paper (Taiwan Health Supplements) is confidential and not included in this demo.
+            The Taiwan Health Supplements domain studied in the paper is confidential and not included in this demo.
           </p>
           <div className="flex flex-wrap justify-center gap-x-20 gap-y-12 max-w-4xl mx-auto">
             {TRY_CARDS.map((card, i) => (
