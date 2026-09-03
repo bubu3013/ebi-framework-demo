@@ -3,7 +3,7 @@
 Companion demo for the paper
 **"Predicting Collective Behavior with Large Language Models: The EBI Framework for Response-Side Inference."**
 
-Live demo: https://ebi-framework-demo.vercel.app
+Live demo: https://ai-army-emnlp-demo-2026.vercel.app
 
 ## Overview
 
