@@ -28,7 +28,7 @@
     {
       "type": "baseline_statistical",
       "model": "ols",
-      "jsd": 0.09041,
+      "jsd": 0.090407,
       "spearman_rho": 0.955,
       "mae": 0.057547,
       "mae_scale": "proportion"
@@ -36,25 +36,25 @@
     {
       "type": "baseline_statistical",
       "model": "sarima",
-      "jsd": 0.093095,
+      "jsd": 0.093092,
       "spearman_rho": 0.955,
-      "mae": 0.061271,
+      "mae": 0.061276,
       "mae_scale": "proportion"
     },
     {
       "type": "baseline_statistical",
       "model": "xgboost",
-      "jsd": 0.10088,
-      "spearman_rho": 0.919,
-      "mae": 0.068774,
+      "jsd": 0.062081,
+      "spearman_rho": 0.9286,
+      "mae": 0.058977,
       "mae_scale": "proportion"
     },
     {
       "type": "baseline_ml",
       "model": "lstm",
-      "jsd": 0.109668,
+      "jsd": 0.066837,
       "spearman_rho": 0.8929,
-      "mae": 0.078698,
+      "mae": 0.066754,
       "mae_scale": "proportion"
     },
     {
@@ -92,17 +92,17 @@
     {
       "type": "baseline_naive",
       "model": "carry_forward",
-      "jsd": 0.074535,
-      "spearman_rho": 0.8829,
-      "mae": 0.068835,
+      "jsd": 0.067399,
+      "spearman_rho": 0.8929,
+      "mae": 0.059039,
       "mae_scale": "proportion"
     },
     {
       "type": "baseline_naive",
       "model": "moving_avg_3m",
-      "jsd": 0.077382,
-      "spearman_rho": 0.8469,
-      "mae": 0.067782,
+      "jsd": 0.090047,
+      "spearman_rho": 0.8571,
+      "mae": 0.06452,
       "mae_scale": "proportion"
     }
   ],
@@ -156,114 +156,6 @@
         0.239
       ]
     }
-  },
-  "feature_ablation": {
-    "baseline": {
-      "rho": 0.8929,
-      "jsd": 1.5895,
-      "mae": 0.0302
-    },
-    "features": [
-      {
-        "feature_key": "q11",
-        "feature_name": "[E] Consumption tax stance",
-        "tag": "E",
-        "rho": 0.7857,
-        "jsd": 1.2488,
-        "mae": 0.0226,
-        "delta_rho": -0.1072,
-        "delta_jsd": -0.3407,
-        "delta_mae": -0.0076
-      },
-      {
-        "feature_key": "q5",
-        "feature_name": "[B] Ruling vs. opposition lean",
-        "tag": "B",
-        "rho": 0.7857,
-        "jsd": 1.2488,
-        "mae": 0.0226,
-        "delta_rho": -0.1072,
-        "delta_jsd": -0.3407,
-        "delta_mae": -0.0076
-      },
-      {
-        "feature_key": "q1",
-        "feature_name": "[E] Cabinet approval",
-        "tag": "E",
-        "rho": 0.8929,
-        "jsd": 1.194,
-        "mae": 0.0226,
-        "delta_rho": 0.0,
-        "delta_jsd": -0.3955,
-        "delta_mae": -0.0076
-      },
-      {
-        "feature_key": "q7",
-        "feature_name": "[E] Desired election outcome",
-        "tag": "E",
-        "rho": 0.8929,
-        "jsd": 0.9159,
-        "mae": 0.0197,
-        "delta_rho": 0.0,
-        "delta_jsd": -0.6736,
-        "delta_mae": -0.0105
-      },
-      {
-        "feature_key": "q9",
-        "feature_name": "[E] CRA expectation",
-        "tag": "E",
-        "rho": 0.8929,
-        "jsd": 0.9565,
-        "mae": 0.0197,
-        "delta_rho": 0.0,
-        "delta_jsd": -0.633,
-        "delta_mae": -0.0105
-      },
-      {
-        "feature_key": "q10",
-        "feature_name": "[E] Top policy issues",
-        "tag": "E",
-        "rho": 0.8929,
-        "jsd": 0.8137,
-        "mae": 0.0197,
-        "delta_rho": 0.0,
-        "delta_jsd": -0.7758,
-        "delta_mae": -0.0105
-      },
-      {
-        "feature_key": "q2",
-        "feature_name": "[B] Party support distribution",
-        "tag": "B",
-        "rho": 0.8929,
-        "jsd": 1.2413,
-        "mae": 0.0226,
-        "delta_rho": 0.0,
-        "delta_jsd": -0.3482,
-        "delta_mae": -0.0076
-      },
-      {
-        "feature_key": "q8",
-        "feature_name": "[E] Dissolution approval",
-        "tag": "E",
-        "rho": 0.9643,
-        "jsd": 1.0757,
-        "mae": 0.0247,
-        "delta_rho": 0.0714,
-        "delta_jsd": -0.5138,
-        "delta_mae": -0.0055
-      },
-      {
-        "feature_key": "q4",
-        "feature_name": "[B] Election interest",
-        "tag": "B",
-        "rho": 1.0,
-        "jsd": 0.5657,
-        "mae": 0.017,
-        "delta_rho": 0.1071,
-        "delta_jsd": -1.0238,
-        "delta_mae": -0.0132
-      }
-    ]
   },
   "parties": [
     "自由民主党",
