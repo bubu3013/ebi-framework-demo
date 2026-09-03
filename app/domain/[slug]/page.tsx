@@ -3,11 +3,10 @@
 import { use, useState, useEffect } from 'react'
 import { notFound } from 'next/navigation'
 import { getDomainConfig, MODELS } from '@/lib/domain-config'
-import type { ResultData, AblationData, ModelId } from '@/lib/domain-config'
+import type { ResultData, ModelId } from '@/lib/domain-config'
 import { MetricsCards } from '@/components/domain/metrics-cards'
 import { ModelChart } from '@/components/domain/model-chart'
 import { PredGtChart } from '@/components/domain/pred-gt-chart'
-import { AblationChart } from '@/components/domain/ablation-chart'
 import { AblationGuessIt } from '@/components/domain/ablation-guess-it'
 import { AblationBuilder } from '@/components/domain/ablation-builder'
 import { UploadPredict } from '@/components/domain/upload-predict'
@@ -25,17 +24,12 @@ export default function DomainPage({ params }: Props) {
 
   const [model, setModel] = useState<ModelId>('gpt-4.1-2025-04-14')
   const [results, setResults] = useState<ResultData | null>(null)
-  const [ablation, setAblation] = useState<AblationData | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     setLoading(true)
-    Promise.all([
-      fetch(domain.resultJsonPath).then(r => r.json()),
-      fetch('/data/ablation.json').then(r => r.json()),
-    ]).then(([res, abl]) => {
+    fetch(domain.resultJsonPath).then(r => r.json()).then(res => {
       setResults(res)
-      setAblation(abl)
       setLoading(false)
     })
   }, [domain.resultJsonPath])
@@ -94,14 +88,6 @@ export default function DomainPage({ params }: Props) {
             )}
             {results && <ModelChart rows={results.rows} selectedModel={model} />}
           </div>
-
-          {/* Ablation chart — hidden for now
-          {ablation && (
-            <AblationChart
-              ablation={ablation}
-              domainKey={domain.ablationDomainKey}
-            />
-          )} */}
 
           {/* Interactive ablation — election-jp */}
           {slug === 'election-jp' && results && (results as any).guess_it && (

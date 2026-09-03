@@ -12,7 +12,6 @@ export interface DomainConfig {
   resultJsonPath: string
   templateCsvPath: string
   apiRoute: string
-  ablationDomainKey: string
 }
 
 export const DOMAINS: DomainConfig[] = [
@@ -26,7 +25,6 @@ export const DOMAINS: DomainConfig[] = [
     resultJsonPath: '/data/results/election-jp.json',
     templateCsvPath: '/templates/template-election-jp.csv',
     apiRoute: '/api/election-jp-predict',
-    ablationDomainKey: 'election_japan',
   },
   {
     slug: 'kickstarter-technology',
@@ -38,7 +36,6 @@ export const DOMAINS: DomainConfig[] = [
     resultJsonPath: '/data/results/kickstarter-technology.json',
     templateCsvPath: '/templates/template-kickstarter-technology.csv',
     apiRoute: '/api/kickstarter-technology-predict',
-    ablationDomainKey: 'Kickstarter Technology',
   },
 ]
 
@@ -78,18 +75,4 @@ export interface ResultData {
   domain: string
   rows: ResultRow[]
   breakdown?: BreakdownData
-}
-
-export interface AblationCondition {
-  domain: string
-  none: number | null
-  E_only: number | null
-  B_only: number | null
-  EB_full: number | null
-}
-
-export interface AblationData {
-  rho: AblationCondition[]
-  jsd: AblationCondition[]
-  mae: AblationCondition[]
 }
